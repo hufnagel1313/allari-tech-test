@@ -1,0 +1,42 @@
+﻿@{
+    ViewData["Title"] = "Simple Product List";
+}
+
+@model List<ProductModel>
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>You can click the column headers to sort <b>(asynchronous AJAX call)</b></p>
+</div>
+
+<div id="ProductListContainer">
+    @await Html.PartialAsync("_ProductListPartial", Model)
+</div>
+
+@section scripts{
+    <script type="text/javascript">
+            function GetProducts(orderByProperty) {
+                $.ajax(
+                    {
+                        type: 'GET',
+                        url: '/Home/GetProduts',
+                        dataType: 'html',
+                        data: {
+                            "orderByProperty": orderByProperty
+                        },
+                        cache: false,
+                        async: true,
+                        success: function (data) {
+                            $('#ProductListContainer').html(data);
+                        }
+                    });
+            }
+
+            $('#ProductListContainer').on('click', '.col-action', function () {
+                var orderByProperty = $(this).attr("data");
+                GetProducts(orderByProperty);
+            });
+
+        </script>
+}
+

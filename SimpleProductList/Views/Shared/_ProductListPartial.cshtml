@@ -1,0 +1,41 @@
+﻿@model List<ProductModel>
+
+<section class="intro">
+    <div class="bg-image h-100" style="background-color: #f5f7fa;">
+        <div class="mask d-flex align-items-center h-100">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body p-0">
+                                <div class="table-responsive table-scroll" data-mdb-perfect-scrollbar="true" style="position: relative; height: 700px">
+                                    <table class="table table-striped mb-0">
+                                        <thead style="background-color: #002d72;">
+                                            <tr>
+                                                <th scope="col" role="button" class="col-action" data="Id"><u>ID</u></th>
+                                                <th scope="col" role="button" class="col-action" data="Name"><u>Name</u></th>
+                                                <th scope="col" role="button" class="col-action" data="Price"><u>Price</u></th>
+                                                <th scope="col" role="button" class="col-action" data="StockCount"><u>In Stock</u></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var product in Model)
+                                            {
+                                                <tr>
+                                                    <td>@product.Id</td>
+                                                    <td>@product.Name</td>
+                                                    <td>@product.Price.ToString("c")</td>
+                                                    <td>@product.StockCount</td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
